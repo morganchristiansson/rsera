@@ -1,0 +1,26 @@
+<h1>Listing keywords</h1>
+
+<table>
+  <tr>
+    <th>Keyword</th>
+    <th>Langcode</th>
+    <th>Is active</th>
+    <th>Priority</th>
+  </tr>
+
+<% @keywords.each do |keyword| %>
+  <tr>
+    <td><%=h keyword.keyword %></td>
+    <td><%=h keyword.langcode %></td>
+    <td><%=h keyword.is_active %></td>
+    <td><%=h keyword.priority %></td>
+    <td><%= link_to 'Show', keyword %></td>
+    <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
+    <td><%= link_to 'Destroy', keyword, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New keyword', new_keyword_path %>

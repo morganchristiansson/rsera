@@ -1,0 +1,12 @@
+BODY            { font-size: 10pt; font-family: Arial; background-color: #003366; margin: 0pt }
+TD              { font-size: 10pt; font-family: Arial }
+A:link 		      { color: #f8fad5; text-decoration: underline }
+A:visited 	    { color: #5d90c3; text-decoration: underline }
+A:active 	      { color: #5d90c3; text-decoration: underline }
+A:hover 	      { color: #0090c3; text-decoration: underline }
+A.menu:link     { color: #f8fad5; text-decoration: none }
+A.menu:visited  { color: #f8fad5; text-decoration: none }
+A.menu:active   { color: #f8fad5; font-weight: bold }
+A.menu:hover    { color: #f8fad5; font-weight: bold; text-decoration: none }
+.menukop        { color:#FFFFFF; font-size: 10pt;font-family: Arial; font-weight:bold;}
+.release        { color:#EEEEEE; font-size: 7pt;font-family: Arial; font-weight:bold;}

@@ -1,0 +1,44 @@
+BODY 		             { font-size: 10pt; font-family: Arial; background-color: #f6f6f6; margin: 5pt }
+.calender { background-color: #f6f6f6 }
+.statweekend { color: white; background-color: gray }
+TD 		          {font-family: "Arial"; font-size: 10pt; color: black;}
+TH  { color: #036; font-size: 10pt; font-family: Arial; text-align: left }
+.tof INPUT      {background-color: '#99AACC'; font-family: "Arial"; font-size: 10pt; color: black; border-style: solid; border-width: 1px; border-color: black}
+A:link 		       { color: #036; text-decoration: underline }
+A:visited 	     { color: #036; text-decoration: underline }
+A:active 	       { color: #036; text-decoration: underline }
+A:hover 	       { color: #036; text-decoration: underline }
+A.def:link 		  {color:'#003366'; text-decoration:none;}
+A.def:visited 	{color:'#003366'; text-decoration:none;}
+A.def:active 	  {color:'#003366'; text-decoration:none;}
+A.def:hover 	  {color:'#003366'; text-decoration:none;}
+A.menu:link 		{color:'#F8FAD5'; text-decoration:none;}
+A.menu:visited 	{color:'#F8FAD5'; text-decoration:none;}
+A.menu:active 	{color:'#F8FAD5'; font-weight:bold;}
+A.menu:hover 	  {color:'#F8FAD5'; text-decoration:none; font-weight:bold;}
+.omschrijving   {color:'#003366'; font-size: 10pt;font-family: "Arial"; font-weight:bold;}
+.error	{font-size:8pt;	color:red;font-weight: bold;}
+.menukop		   	 { color: #fff; font-weight: bold; font-size: 10pt; font-family: Arial, Helvetica, Geneva, Swiss, SunSans-Regular }
+.formtext       {font-family: "Arial"; font-size: 8pt; color: black;}
+.forminput      {font-family: "Arial"; font-size: 8pt; color: black;}
+.columheader    {font-family: "Arial"; font-size: 8pt; color: black;}
+.invoer         {font-family: "Arial"; font-size: 10pt; color: black; border-style: solid; border-width: 1px;}
+select.keuzeveld {width:165;}
+h3   { color: #036; font-weight: bold }
+h2 { color: #036; font-weight: bold }
+h1 { color: #036; font-weight: bold }
+h4  { color: #036 }
+h5 { color: #036 }
+h6 { color: #036 }
+
+.ranking { font-size: 16pt; }
+
+.td1 { background-color: #448899; color: white; } 
+.td2 { background-color: #003366; color: white; } 
+
+input {
+ border: 2px solid #ccc;
+}
+input:focus {
+ border: 2px solid #000;
+}

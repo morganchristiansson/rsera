@@ -1,0 +1,50 @@
+phpSERA - Search Engine Ranking Analyzer
+---------
+README (2003-12-01)
+
+1. Overview
+
+   phpSERA is an Open Source tool for keeping up with 
+   your position in search engine rankings. Dozens of 
+   search engines are provided, and you can easily
+   add or update the SEs in the database. Just add
+   your own keyphrases and URLs and let phpSERA do
+   the job.
+
+2. Installation
+
+   See INSTALL
+
+3. Documentation
+
+   TODO
+
+4. Homepage and download
+
+    The official phpSERA homepage is:
+    http://phpsera.sourceforge.net/
+
+5. Automated ranking analysis
+
+    One can automate the analysis procedure through cronjobs.
+    Each cronjob will have to query a specific PHP page. For
+    an example of a PHP page which will perform the analysis,
+    see this file:
+    
+             stuff/examples/example_cronjob.php
+
+5. Bug reporting and support
+
+    Bug reports and suggestions are welcome! 
+    Send them to opensource[at]koot.biz
+
+6. Credits
+
+    All flag images were originally downloaded from:
+      http://www.columbia.edu/~sss31/image-gallery/flags/
+
+    All graphs/charts are generated with jpGraph, created by Johan Persson:
+      http://www.aditus.nu/jpgraph
+
+    Database connectivity is provided by ADOdb:
+      http://php.weblogs.com/adodb

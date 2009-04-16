@@ -1,0 +1,23 @@
+<p>
+  <b>Keyword:</b>
+  <%=h @keyword.keyword %>
+</p>
+
+<p>
+  <b>Langcode:</b>
+  <%=h @keyword.langcode %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%=h @keyword.is_active %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%=h @keyword.priority %>
+</p>
+
+
+<%= link_to 'Edit', edit_keyword_path(@keyword) %> |
+<%= link_to 'Back', keywords_path %>

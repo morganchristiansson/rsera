@@ -1,0 +1,64 @@
+phpSERA - Search Engine Ranking Analyzer
+---------
+TODO (2004-05-04)
+
+This is a summary of future changes/additions to phpSERA. Suggestions
+made by others are listed below.
+
+- rebuild phpSERA from scratch with pure object orientation (php5?)
+
+- integrate tidy.sf.net into phpSERA so phpSERA can actually
+  'understand' the result page i.s.o. those damn regex's
+
+- support multiple result pages (search depth)
+
+- support for SEs like "T-Online.de", which don't display 
+  URLs in their results but some stupid redirect link
+  (make SERA look for the domainname rather than the full URL, 
+  this might work for redirect links which contain your domain
+  name in a parameter)
+
+- make sense of how to count sponsored links, as they should 
+  NEVER have any influence to the analysis 
+
+- handle anti-SERA techniques such as altavista and yahoo 
+  use (changing HTML on the fly to avoid pattern analysis)
+
+========
+Radu
+========
+- automatic centralized update of the definitions for the engines from your site or other developers.
+
+========
+Simone
+========
+
+- Simple (or nearly :)) improvements
+... It would be a real improvement to have not two text fields for start 
+end stop regexps, but two text areas with the new lines automatically 
+converted to "\n" when saving in the DB. In the 99% of cases finding the 
+start and end point if just a metter of copying tags, escaping slashes, and 
+counting \n's to place.
+... Why not kindly ask the user if it's ok to send a notification to you 
+about the changes they do to the search engine database? Just an email with 
+the UPDATE ...
+
+
+- Ideas, feature requests, call them as you prefer :D
+... More pages, is as simple as adding two columns in the search engines : 
+pageparam e pagestep, and setting limit on th number of pages to be scanned
+... Regular expression urls, i don't want to specify more urls for my site, 
+but something like "http:\/\/.*\.thebug\.it\/.*" , and then have php sera 
+tell me the first occurence of a matching url, and which url it is. It's 
+enought to parse the matching href.
+... It would be really nice to have on the database a dump of the complete 
+search result, not only of the indicated url but also of competitors, to 
+obtain a graph relating not my site for the various keywords, but my site 
+and his competitors dancing on the same keyword. The method could be the 
+same : i tell the system the regex urls of my competitors, and it saves the 
+ones that matches and their positions.
+
+========
+Daniel
+========
+3) I'll want to do comparisons between different sites but to do it, I need to know if it's the same keyphrase for differents site or not. Actually, the same keyphrase is added twice in the table keyphrases if it's for 2 different sites. So I need to separate keyphrases & websites in two differents tables.  (add a join table with only 2 fields, zt_id & ws_id, and take ws_id out the keyphrases table).

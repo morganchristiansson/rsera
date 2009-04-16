@@ -1,0 +1,19 @@
+phpSERA - Search Engine Ranking Analyzer
+---------
+CHANGES (2004-05-04)
+
+This document describes the changes made between releases of phpSERA.
+
+Changes until 0.3alpha1:
+-------------
+- now 100% support for UTF-8
+- indexed page is now stored with each ranking (i.e. '/products.html', '/docs/')
+- added support for HTTP proxy (see global.inc.php)
+- added support for custom User-Agent header (see global.inc.php)
+- added textarea to Keyphrase Management to add multiple phrases at once
+
+Changes before 0.3alpha1:
+-------------
+- I forgot :/
+
+
