@@ -1,15 +1,16 @@
-phpSERA - Search Engine Ranking Analyzer
+rSERA - rails Search Engine Ranking Analyzer
 ---------
-README (2003-12-01)
 
 1. Overview
 
-   phpSERA is an Open Source tool for keeping up with 
+   rSERA is an Open Source tool for keeping up with 
    your position in search engine rankings. Dozens of 
    search engines are provided, and you can easily
    add or update the SEs in the database. Just add
-   your own keyphrases and URLs and let phpSERA do
+   your own keyphrases and URLs and let rSERA do
    the job.
+   
+   rSERA is based on phpSera http://phpsera.sourceforge.net/
 
 2. Installation
 
@@ -19,11 +20,6 @@ README (2003-12-01)
 
    TODO
 
-4. Homepage and download
-
-    The official phpSERA homepage is:
-    http://phpsera.sourceforge.net/
-
 5. Automated ranking analysis
 
     One can automate the analysis procedure through cronjobs.
@@ -32,11 +28,6 @@ README (2003-12-01)
     see this file:
     
              stuff/examples/example_cronjob.php
-
-5. Bug reporting and support
-
-    Bug reports and suggestions are welcome! 
-    Send them to opensource[at]koot.biz
 
 6. Credits
 
@@ -48,3 +39,4 @@ README (2003-12-01)
 
     Database connectivity is provided by ADOdb:
       http://php.weblogs.com/adodb
+
