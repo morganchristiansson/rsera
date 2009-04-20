@@ -1,0 +1,16 @@
+<h1>Editing report</h1>
+
+<% form_for(@report) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :rankdate %><br />
+    <%= f.datetime_select :rankdate %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @report %> |
+<%= link_to 'Back', reports_path %>

@@ -1,0 +1,24 @@
+<h1>Listing searchengines</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Host</th>
+    <th>Selector</th>
+  </tr>
+
+<% @searchengines.each do |searchengine| %>
+  <tr>
+    <td><%=h searchengine.title %></td>
+    <td><%=h searchengine.host %></td>
+    <td><%=h searchengine.selector %></td>
+    <td><%= link_to 'Show', searchengine %></td>
+    <td><%= link_to 'Edit', edit_searchengine_path(searchengine) %></td>
+    <td><%= link_to 'Destroy', searchengine, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New searchengine', new_searchengine_path %>

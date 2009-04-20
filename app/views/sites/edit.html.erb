@@ -1,0 +1,20 @@
+<h1>Editing website</h1>
+
+<% form_for(@website) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :datedag %><br />
+    <%= f.datetime_select :datedag %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @website %> |
+<%= link_to 'Back', websites_path %>

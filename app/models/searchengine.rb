@@ -1,5 +1,5 @@
 class Searchengine < ActiveRecord::Base
-	set_primary_key "zm_id"
+  has_many :logs, :class_name => "SearchengineLog"
 	has_many :reportrules
 	def to_s
 		title

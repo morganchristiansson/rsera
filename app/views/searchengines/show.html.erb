@@ -1,0 +1,23 @@
+<p>
+  <b>Title:</b>
+  <%=h @searchengine.title %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <%=h @searchengine.host %>
+</p>
+
+<p>
+  <b>Query:</b>
+  <%=h @searchengine.query %>
+</p>
+
+<p>
+  <b>Selector:</b>
+  <%=h @searchengine.selector %>
+</p>
+
+
+<%= link_to 'Edit', edit_searchengine_path(@searchengine) %> |
+<%= link_to 'Back', searchengines_path %>

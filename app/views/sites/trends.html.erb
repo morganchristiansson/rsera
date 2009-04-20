@@ -1,0 +1,11 @@
+FIXME: priorities
+
+<h2>Searchengines</h2>
+<ul>
+<% Searchengine.find(:all).each do |s| %>
+	<li><%= link_to s.title, site_trends_path(@site, :searchengine_id => s.id) %>
+<% end %>
+</ul>
+
+<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<%= @graph %>

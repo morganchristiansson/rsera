@@ -1,0 +1,27 @@
+<h1>New searchengine</h1>
+
+<% form_for(@searchengine) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :host %><br />
+    <%= f.text_field :host %>
+  </p>
+  <p>
+    <%= f.label :query %><br />
+    <%= f.text_field :query %>
+  </p>
+  <p>
+    <%= f.label :selector %><br />
+    <%= f.text_field :selector %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', searchengines_path %>

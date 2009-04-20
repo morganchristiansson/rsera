@@ -2,7 +2,7 @@ class KeywordsController < ApplicationController
   # GET /keywords
   # GET /keywords.xml
   def index
-    @keywords = Keyword.all
+    @keywords = Website.find(params[:website_id]).keywords
 
     respond_to do |format|
       format.html # index.html.erb

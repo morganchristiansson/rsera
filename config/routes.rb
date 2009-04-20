@@ -1,5 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :searchengines
+
+  map.resources :sites, :requirements => { :id => %r([^/;,]+) } do |ws|
+    ws.resources :keywords
+    ws.resources :reports
+  end
   map.resources :keywords
+  map.resources :reports
+
+  map.root :controller => "Sites"
+  
+
+  map.site_trends 'sites/trends/:id', :controller => "Sites", :action => "trends", :requirements => { :id => %r([^/;,]+) }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -40,6 +52,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id', :requirements => { :id => %r([^/;,]+) }
+  map.connect ':controller/:action/:id.:format', :requirements => { :id => %r([^/;,]+) }
 end
