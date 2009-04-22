@@ -1,9 +1,7 @@
 class CreateWebsites < ActiveRecord::Migration
   def self.up
-    create_table :websites do |t|
-      t.string :url
-      t.timestamp :datedag
-
+    create_table :sites do |t|
+      t.string :host
       t.timestamps
     end
   end

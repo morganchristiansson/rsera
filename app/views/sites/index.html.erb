@@ -7,7 +7,7 @@
 
 <% @sites.each do |site| %>
   <tr>
-    <td><%= link_to h(site.url), site %></td>
+    <td><%= link_to h(site.host), site %></td>
     <td><%= link_to 'Trends', site_trends_path(site) %></td>
     <td><%= link_to 'Keywords', site_keywords_path(site) %></td>
     <td><%= link_to 'Reports', site_reports_path(site) %></td>

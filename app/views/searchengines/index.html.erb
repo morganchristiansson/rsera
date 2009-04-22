@@ -5,6 +5,8 @@
     <th>Title</th>
     <th>Host</th>
     <th>Selector</th>
+    <th>Active</th>
+    <th>Logged results</th>
   </tr>
 
 <% @searchengines.each do |searchengine| %>
@@ -12,6 +14,8 @@
     <td><%=h searchengine.title %></td>
     <td><%=h searchengine.host %></td>
     <td><%=h searchengine.selector %></td>
+    <td><%=h searchengine.active %></td>
+    <td><%= searchengine.logs.count %></td>
     <td><%= link_to 'Show', searchengine %></td>
     <td><%= link_to 'Edit', edit_searchengine_path(searchengine) %></td>
     <td><%= link_to 'Destroy', searchengine, :confirm => 'Are you sure?', :method => :delete %></td>

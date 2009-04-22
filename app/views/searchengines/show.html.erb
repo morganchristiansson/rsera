@@ -18,6 +18,11 @@
   <%=h @searchengine.selector %>
 </p>
 
+<p>
+  <b>Active:</b>
+  <%=h @searchengine.active %>
+</p>
+
 
 <%= link_to 'Edit', edit_searchengine_path(@searchengine) %> |
 <%= link_to 'Back', searchengines_path %>

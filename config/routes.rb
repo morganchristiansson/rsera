@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :sites, :requirements => { :id => %r([^/;,]+) } do |ws|
     ws.resources :keywords
-    ws.resources :reports
+    ws.resources :reports, :requirements => { :site_id => %r([^/;,]+) }
   end
   map.resources :keywords
   map.resources :reports

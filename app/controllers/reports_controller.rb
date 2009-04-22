@@ -2,7 +2,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.xml
   def index
-    @reports = Website.find(params[:website_id]).reports
+    @reports = Site.find_by_host(params[:site_id]).reports
 
     respond_to do |format|
       format.html # index.html.erb

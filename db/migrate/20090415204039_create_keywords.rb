@@ -5,7 +5,6 @@ class CreateKeywords < ActiveRecord::Migration
       t.string :langcode
       t.integer :is_active
       t.integer :priority
-
       t.timestamps
     end
   end
