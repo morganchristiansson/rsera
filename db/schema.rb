@@ -9,13 +9,49 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090415204039) do
+ActiveRecord::Schema.define(:version => 20090422024614) do
 
   create_table "keywords", :force => true do |t|
     t.string   "keyword"
     t.string   "langcode"
     t.integer  "is_active"
     t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.datetime "rankdate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "searchengine_logs", :force => true do |t|
+    t.integer  "report_id"
+    t.integer  "searchengine_id"
+    t.integer  "keyword_id"
+    t.integer  "ranking"
+    t.string   "indexed_page"
+    t.binary   "contents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "searchengines", :force => true do |t|
+    t.string   "title"
+    t.string   "host"
+    t.string   "langcode"
+    t.string   "query"
+    t.string   "selector"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites", :force => true do |t|
+    t.string   "host"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

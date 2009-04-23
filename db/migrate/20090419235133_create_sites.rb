@@ -1,4 +1,4 @@
-class CreateWebsites < ActiveRecord::Migration
+class CreateSites < ActiveRecord::Migration
   def self.up
     create_table :sites do |t|
       t.string :host
@@ -7,6 +7,6 @@ class CreateWebsites < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :websites
+    drop_table :sites
   end
 end

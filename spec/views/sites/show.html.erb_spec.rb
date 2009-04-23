@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe "/websites/show.html.erb" do
-  include WebsitesHelper
+describe "/sites/show.html.erb" do
+  include SitesHelper
   before(:each) do
-    assigns[:website] = @website = stub_model(Website,
+    assigns[:site] = @site = stub_model(Site,
       :url => "value for url"
     )
   end

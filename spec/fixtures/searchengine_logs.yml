@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  searchengine_id: 1
+  keyword_id: 1
+  contents: 
+
+two:
+  searchengine_id: 1
+  keyword_id: 1
+  contents: 
