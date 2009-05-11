@@ -3,7 +3,6 @@ class CreateReports < ActiveRecord::Migration
     create_table :reports do |t|
     	t.integer :site_id
     	t.string :name
-      t.timestamp :rankdate
       t.timestamps
     end
   end

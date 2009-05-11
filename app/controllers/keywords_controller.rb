@@ -2,7 +2,8 @@ class KeywordsController < ApplicationController
   # GET /keywords
   # GET /keywords.xml
   def index
-    @keywords = Website.find(params[:website_id]).keywords
+    @site     = Site.find_by_host(params[:site_id])
+    @keywords = @site.keywords
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,21 +11,11 @@ class KeywordsController < ApplicationController
     end
   end
 
-  # GET /keywords/1
-  # GET /keywords/1.xml
-  def show
-    @keyword = Keyword.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @keyword }
-    end
-  end
-
   # GET /keywords/new
   # GET /keywords/new.xml
   def new
-    @keyword = Keyword.new
+    @site = Site.find_by_host(params[:site_id])
+    @keyword = @site.keywords.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -82,4 +73,63 @@ class KeywordsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /keywords/1
+  # GET /keywords/1.xml
+  def show
+    require 'cgi'
+    @keyword = Keyword.find(params[:id])
+    #FIXME group by searchengine_id
+    @site    = @keyword.site
+    @google_analytics_link = "https://www.google.com/analytics/reporting/keyword_detail?id=3132790&lp=%2Fanalytics%2Freporting%2Fkeywords&d1="+CGI.escape(@keyword.keyword)
+    @graph = open_flash_chart_object(600,600, url_for(:id => params[:id], :action => "graph_code"))
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @keyword }
+    end
+  end
+
+  def graph_code
+    #FIXME dates do not nessecarirly line up for different searchengines
+    #Use scatter charts instead!
+    colors = ['#808080','#C0C0C0','#000000','#000080','#0000FF','#008080','#00FFFF','#800080','#800000','#FF0000','#FF00FF','#008000','#00FF00','#808000','#FFFF00']
+    i=0
+
+    keyword = Keyword.find(params[:id])
+    logs = keyword.searchengine_logs.find(:all, :order => "searchengine_id, updated_at")
+    engines = {}
+    for log in logs
+      engines[log.searchengine] ||= []
+      engines[log.searchengine] << log
+    end
+    #raise logs.inspect
+    #return
+    logs=nil
+    chart = OpenFlashChart.new
+    
+    #x_labels = XAxisLabels.new
+    #x_labels.set_vertical
+    #x_labels.labels = logs.map(&:created_at)
+    #x = XAxis.new
+    #x.set_labels x_labels
+    #chart.x_axis = x
+
+    y = YAxis.new
+    y.set_range(50,1,1)
+    y.set_vertical()
+    chart.y_axis = y
+
+    for engine,logs in engines.each_pair
+      line = Line.new
+      line.set_text engine.to_s
+      line.set_values logs.map(&:ranking)
+      line.set_colour colors[i%colors.length]
+      i+=1
+      line.set_tooltip engine.to_s
+      chart.add_element(line)
+    end
+    render :text => chart.to_s
+  end
 end
+

@@ -9,7 +9,7 @@
 <% @reports.each do |report| %>
   <tr>
     <td><%=h report.created_at %></td>
-    <td style="text-align: right;"><%= report.searchengine_logs.length %></td>
+    <td style="text-align: right;"><%= report.searchengine_logs.count %></td>
     <td><%= link_to 'Show', report %></td>
     <td><%= link_to 'Edit', edit_report_path(report) %></td>
     <td><%= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -19,5 +19,5 @@
 
 <br />
 
-<%= link_to 'New report', new_report_path %>
+<%= link_to 'New report', new_site_report_path(@site) %>
 

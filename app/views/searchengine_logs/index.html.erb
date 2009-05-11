@@ -1,0 +1,30 @@
+<h1>Listing searchengine_logs</h1>
+
+<table>
+  <tr>
+    <th>Report</th>
+    <th>Searchengine</th>
+    <th>Keyword</th>
+    <th>Ranking</th>
+    <th>Indexed page</th>
+    <th>Contents</th>
+  </tr>
+
+<% @searchengine_logs.each do |searchengine_log| %>
+  <tr>
+    <td><%=h searchengine_log.report_id %></td>
+    <td><%=h searchengine_log.searchengine_id %></td>
+    <td><%=h searchengine_log.keyword_id %></td>
+    <td><%=h searchengine_log.ranking %></td>
+    <td><%=h searchengine_log.indexed_page %></td>
+    <td><%=h searchengine_log.contents %></td>
+    <td><%= link_to 'Show', searchengine_log %></td>
+    <td><%= link_to 'Edit', edit_searchengine_log_path(searchengine_log) %></td>
+    <td><%= link_to 'Destroy', searchengine_log, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New searchengine_log', new_searchengine_log_path %>

@@ -14,7 +14,7 @@
     <td><%=h searchengine.title %></td>
     <td><%=h searchengine.host %></td>
     <td><%=h searchengine.selector %></td>
-    <td><%=h searchengine.active %></td>
+    <td><%= searchengine.active ? 'Yes' : 'No' %></td>
     <td><%= searchengine.logs.count %></td>
     <td><%= link_to 'Show', searchengine %></td>
     <td><%= link_to 'Edit', edit_searchengine_path(searchengine) %></td>

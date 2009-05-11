@@ -94,57 +94,53 @@ class SitesController < ApplicationController
   end
 
   def graph_code
-  	@site = Site.find_by_host params[:id]
-  	@searchengine = Searchengine.find params[:searchengine_id]
+    @site = Site.find_by_host params[:id]
+    @searchengine = Searchengine.find params[:searchengine_id]
 
-		#keyword_id = keyphrase_id = high priority keyphrases
-    #conditions = ["searchengine_id=? AND keyword_id IN(2,3,4,5,11,10,12,13,15,21,28,32,34,35,39,45,51,67,82,83,84,107,108)", @searchengine.id]
+    chart = OpenFlashChart.new
+    title = Title.new("SERP Report for #{@searchengine}")
+    chart.set_title(title)
+
     params[:priority] ||= 1
-    conditions = {"searchengine_logs.searchengine_id" => params[:searchengine_id], "keywords.priority" => params[:priority], "reports.site_id" => @site.id}
-		dates = {}
-		keyword_ids = {}
-		rrs = SearchengineLog.find(:all, :conditions => conditions, :joins => [:report, :keyword], :order => "searchengine_logs.created_at")
+    conditions = ["searchengine_logs.searchengine_id = ? AND keywords.priority = ? AND reports.site_id = ? AND ranking IS NOT NULL", params[:searchengine_id], params[:priority], @site.id]
+    dates = {}
+    keyword_ids = {}
+    rrs = SearchengineLog.find(:all, :conditions => conditions, :joins => [:report, :keyword], :order => "searchengine_logs.created_at")
     rrs.each do |rr|
-    	date = rr.report.created_at
-    	dates[date] ||= {}
-    	dates[date][rr.keyword.keyword] = rr.ranking > 0 ? rr.ranking : 51
-    	keyword_ids[rr.keyword.keyword] ||= []
+      date = rr.report.created_at
+      dates[date] ||= {}
+      dates[date][rr.keyword.keyword] = rr.ranking > 0 ? rr.ranking : 51
+      keyword_ids[rr.keyword.keyword] ||= []
     end
     x_labels = XAxisLabels.new
-    x_labels.set_vertical()
-    #x_labels.labels = tmp
+    x_labels.set_vertical
     x_labels.labels = dates.keys.sort
     x = XAxis.new
     x.set_labels(x_labels)
-
-
-    title = Title.new("SERP Report for #{@searchengine}")
-    chart = OpenFlashChart.new
-    chart.set_title(title)
     chart.x_axis = x
 
-		y = YAxis.new
-		y.set_range(50,1,1)
-		y.set_vertical()
-		chart.y_axis = y
+    y = YAxis.new
+    y.set_range(50,1,1)
+    y.set_vertical()
+    chart.y_axis = y
 
-		dates.sort.each do |date,rankings|
-			keyword_ids.keys.each do |keyword_id|
-				keyword_ids[keyword_id] << rankings[keyword_id]
-			end
+    dates.sort.each do |date,rankings|
+    keyword_ids.keys.each do |keyword_id|
+      keyword_ids[keyword_id] << rankings[keyword_id]
+    end
     end
     colors = ['#808080','#C0C0C0','#000000','#000080','#0000FF','#008080','#00FFFF','#800080','#800000','#FF0000','#FF00FF','#008000','#00FF00','#808000','#FFFF00']
     i=0
-		keyword_ids.sort.each do |keyword_id,values|
-		  line = Line.new
-		  line.set_text keyword_id
-		  line.set_values values
-			line.set_colour colors[i%colors.length]
-			line.set_tooltip "#key# #val#"
-		  chart.add_element(line)
-			i+=1
-		end
 
+    keyword_ids.sort.each do |keyword_id,values|
+      line = Line.new
+      line.set_text keyword_id
+      line.set_values values
+      line.set_colour colors[i%colors.length]
+      i+=1
+      line.set_tooltip "#key# #val#"
+      chart.add_element(line)
+    end
     render :text => chart.to_s
   end
 end

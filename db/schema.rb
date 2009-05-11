@@ -9,11 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090422024614) do
+ActiveRecord::Schema.define(:version => 20090507054852) do
 
   create_table "keywords", :force => true do |t|
     t.string   "keyword"
     t.string   "langcode"
+    t.integer  "site_id"
     t.integer  "is_active"
     t.integer  "priority"
     t.datetime "created_at"
@@ -23,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20090422024614) do
   create_table "reports", :force => true do |t|
     t.integer  "site_id"
     t.string   "name"
-    t.datetime "rankdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,7 +37,11 @@ ActiveRecord::Schema.define(:version => 20090422024614) do
     t.binary   "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_id"
+    t.integer  "results_count"
   end
+
+  add_index "searchengine_logs", ["report_id"], :name => "index_searchengine_logs_on_report_id"
 
   create_table "searchengines", :force => true do |t|
     t.string   "title"

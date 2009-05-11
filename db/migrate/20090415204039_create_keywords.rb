@@ -3,6 +3,7 @@ class CreateKeywords < ActiveRecord::Migration
     create_table :keywords do |t|
       t.string :keyword
       t.string :langcode
+      t.integer :site_id
       t.integer :is_active
       t.integer :priority
       t.timestamps

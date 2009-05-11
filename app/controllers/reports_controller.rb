@@ -2,7 +2,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.xml
   def index
-    @reports = Site.find_by_host(params[:site_id]).reports
+    @site    = Site.find_by_host(params[:site_id])
+    @reports = @site.reports
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class ReportsController < ApplicationController
   # GET /reports/1.xml
   def show
     @report = Report.find(params[:id])
+    @site   = @report.site
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +37,7 @@ class ReportsController < ApplicationController
   # GET /reports/1/edit
   def edit
     @report = Report.find(params[:id])
+    @site   = @report.site
   end
 
   # POST /reports
@@ -78,8 +81,9 @@ class ReportsController < ApplicationController
     @report.destroy
 
     respond_to do |format|
-      format.html { redirect_to(reports_url) }
+      format.html { redirect_to(site_reports_url(@report.site)) }
       format.xml  { head :ok }
     end
   end
 end
+

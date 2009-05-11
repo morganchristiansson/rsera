@@ -1,21 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Websites: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'default' %>
 </head>
 <body>
-
-<h2>Navigation</h2>
-<%= link_to "Websites", root_path %>
-<%= link_to "Searchengines", searchengines_path %>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
+<div id="doc3" class="yui-t7"> 
+   <div id="hd"><h1>rSERA</h1>
+  <ul>
+<li><%= link_to "Websites", root_path %></li>
+<li><%= link_to "Searchengines", searchengines_path %></li>
+</ul>
+   <p style="color: green"><%= flash[:notice] %></p>
+   <div id="bd" role="main"> 
+    <div class="yui-g"> 
+    <!-- YOUR DATA GOES HERE --> 
 <%= yield %>
-
+    </div> 
+ 
+    </div> 
+   <div id="ft"><p>Footer</p></div> 
+</div> 
 </body>
 </html>
+

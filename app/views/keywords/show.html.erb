@@ -19,5 +19,24 @@
 </p>
 
 
+<p>
+  <b>External tools:</b>
+  <ul>
+  <li><a href="<%= @google_analytics_link %>">Google Analytics</a></li>
+  </ul>
+</p>
+
 <%= link_to 'Edit', edit_keyword_path(@keyword) %> |
-<%= link_to 'Back', keywords_path %>
+<%= link_to 'Back', site_keywords_path(@site) %>
+
+<hr>
+<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<%= @graph %>
+
+<hr>
+<h2>History</h2>
+<ul>
+<% for log in @keyword.searchengine_logs.find(:all, :order => 'searchengine_id') %>
+  <li><%= link_to "#{log.ranking} #{log.searchengine} #{log.report.created_at}", log %></li>
+<% end %>
+</ul>

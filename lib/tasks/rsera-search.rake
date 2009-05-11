@@ -6,7 +6,6 @@ require 'cgi'
 
 def do_search s, keyword
   url = s.query.gsub /\[__KEYPHRASE__\]/, CGI.escape(keyword.keyword)
-  puts "Searching #{s.title} for: #{keyword.keyword} using selector: #{s.selector}"
   puts url
 
   doc=nil
@@ -14,25 +13,35 @@ def do_search s, keyword
   open(url) do |f|
     html=f.readlines.join ''
   end
-  log=s.logs.create(:contents => html, :keyword_id => keyword.id)
-  puts "Logged result as #{log.id}"
   doc=Hpricot(html)
-  html=nil
+  #html=nil
 
   results = doc.search(s.selector)
-  puts "Found #{results.length} results"
+  puts "#{results.length} results found"
 
   pos = 0
+  found=false
   results.each do |result|
     pos += 1
-    if result.to_plain_text.include? keyword.site.url
-      puts "HIT at position #{pos} for keyword #{keyword.site.url}!"
-      @report.reportrules.create(:keyword_id => keyword.id,
-                                 :searchengine_id => s.id,
-                                 :ranking => pos,
-                                 :indexed_page => result.to_plain_text)
+    if result.to_plain_text.include? keyword.site.host
+      puts "HIT at position #{pos} for keyword #{keyword.site.host}!"
+      s.logs.create(:keyword_id => keyword.id,
+                    :searchengine_id => s.id,
+                    :report_id => @report.id,
+                    :ranking => pos,
+                    :results_count => results.length,
+                    :indexed_page => result.to_plain_text,
+                    :contents => html)
+      found=true
       break
     end
+  end
+  if !found
+    log=s.logs.create(:keyword_id => keyword.id,
+                      :searchengine_id => s.id,
+                      :report_id => @report.id,
+                      :contents => html)
+    puts "Logged result as #{log.id}"
   end
   #puts results.inspect
 end
@@ -49,7 +58,11 @@ namespace :rsera do
         ss = Searchengine.find :all, :conditions => "active >0"
       end
       for s in ss
-        for keyword in site.keywords
+        conditions = []
+        if s.langcode != '@@'
+          conditions = ["langcode = ?", s.langcode]
+        end
+        for keyword in site.keywords.find(:all, :conditions => conditions)
           do_search s, keyword
           sleep 0.5
         end

@@ -1,0 +1,2 @@
+module SearchengineLogsHelper
+end

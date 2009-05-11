@@ -1,0 +1,36 @@
+<h1>Editing searchengine_log</h1>
+
+<% form_for(@searchengine_log) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :report_id %><br />
+    <%= f.text_field :report_id %>
+  </p>
+  <p>
+    <%= f.label :searchengine_id %><br />
+    <%= f.text_field :searchengine_id %>
+  </p>
+  <p>
+    <%= f.label :keyword_id %><br />
+    <%= f.text_field :keyword_id %>
+  </p>
+  <p>
+    <%= f.label :ranking %><br />
+    <%= f.text_field :ranking %>
+  </p>
+  <p>
+    <%= f.label :indexed_page %><br />
+    <%= f.text_field :indexed_page %>
+  </p>
+  <p>
+    <%= f.label :contents %><br />
+    <%= f.text_field :contents %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @searchengine_log %> |
+<%= link_to 'Back', searchengine_logs_path %>
