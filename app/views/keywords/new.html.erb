@@ -1,6 +1,6 @@
 <h1>New keyword</h1>
 
-<% form_for(:site_keywords, @keyword) do |f| %>
+<% form_for([@site, @keyword]) do |f| %>
   <%= f.error_messages %>
 
   <p>

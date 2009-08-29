@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %title
+      Websites:
+      = controller.action_name
+    = stylesheet_link_tag 'default'
+  %body
+    #doc3.yui-t7
+      #hd
+        %h1
+          rSERA
+        %ul
+          %li
+            = link_to "Websites", root_path
+          %li
+            = link_to "Searchengines", searchengines_path
+        %p{ :style => "color: green" }
+          = flash[:notice]
+        #bd{ :role => "main" }
+          .yui-g
+            = yield
+        #ft
+          %p
+            Footer

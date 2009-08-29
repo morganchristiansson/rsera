@@ -1,0 +1,9 @@
+- form_for(@site) do |f|
+  = f.error_messages
+  %p
+    = f.label :host
+    %br
+    = f.text_field :host
+  %p
+    = f.submit 'Update'
+

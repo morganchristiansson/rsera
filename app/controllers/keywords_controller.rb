@@ -31,12 +31,13 @@ class KeywordsController < ApplicationController
   # POST /keywords
   # POST /keywords.xml
   def create
-    @keyword = Keyword.new(params[:keyword])
+    @site = Site.find_by_host(params[:site_id])
+    @keyword = @site.keywords.new(params[:keyword])
 
     respond_to do |format|
       if @keyword.save
         flash[:notice] = 'Keyword was successfully created.'
-        format.html { redirect_to(@keyword) }
+        format.html { redirect_to(site_keywords_path(@site, @keyword)) }
         format.xml  { render :xml => @keyword, :status => :created, :location => @keyword }
       else
         format.html { render :action => "new" }

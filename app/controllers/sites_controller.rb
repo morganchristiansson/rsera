@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
-  # GET /websites
-  # GET /websites.xml
+  # GET /sites
+  # GET /sites.xml
   def index
     @sites = Site.all
 
@@ -10,41 +10,38 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /websites/1
-  # GET /websites/1.xml
+  # GET /sites/1
+  # GET /sites/1.xml
   def show
     @site = Site.find_by_host(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @site }
     end
   end
 
-  # GET /websites/new
-  # GET /websites/new.xml
+  # GET /sites/new
+  # GET /sites/new.xml
   def new
     @site = Site.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @site }
     end
   end
 
-  # GET /websites/1/edit
+  # GET /sites/1/edit
   def edit
     @site = Site.find_by_host(params[:id])
   end
 
-  # POST /websites
-  # POST /websites.xml
+  # POST /sites
+  # POST /sites.xml
   def create
-    @site = Site.new(params[:website])
-
+    @site = Site.new(params[:site])
     respond_to do |format|
       if @site.save
-        flash[:notice] = 'Website was successfully created.'
+        flash[:notice] = 'Site was successfully created.'
         format.html { redirect_to(@site) }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
@@ -54,14 +51,13 @@ class SitesController < ApplicationController
     end
   end
 
-  # PUT /websites/1
-  # PUT /websites/1.xml
+  # PUT /sites/1
+  # PUT /sites/1.xml
   def update
     @site = Site.find_by_host(params[:id])
-
     respond_to do |format|
-      if @site.update_attributes(params[:website])
-        flash[:notice] = 'Website was successfully updated.'
+      if @site.update_attributes(params[:site])
+        flash[:notice] = 'Site was successfully updated.'
         format.html { redirect_to(@site) }
         format.xml  { head :ok }
       else
@@ -71,14 +67,13 @@ class SitesController < ApplicationController
     end
   end
 
-  # DELETE /websites/1
-  # DELETE /websites/1.xml
+  # DELETE /sites/1
+  # DELETE /sites/1.xml
   def destroy
     @site = Site.find_by_host(params[:id])
     @site.destroy
-
     respond_to do |format|
-      format.html { redirect_to(websites_url) }
+      format.html { redirect_to(sites_url) }
       format.xml  { head :ok }
     end
   end
@@ -86,7 +81,6 @@ class SitesController < ApplicationController
   def trends
     @site = Site.find_by_host(params[:id])
     @graph = open_flash_chart_object(600,600, url_for(:id => params[:id], :searchengine_id => params[:searchengine_id], :action => "graph_code"))
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @site }

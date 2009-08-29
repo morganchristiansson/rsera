@@ -4,12 +4,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searchengine_logs
   map.searchengine_logs_contents 'searchengine_logs/contents/:id', :controller => "SearchengineLogs", :action => "contents"
 
-  map.resources :sites, :requirements => { :id => %r([^/;,]+) } do |ws|
-    ws.resources :keywords, :only   => [:index,:new], :requirements => { :site_id => %r([^/;,]+) }
-    ws.resources :reports, :only   => [:index,:new], :requirements => { :site_id => %r([^/;,]+) }
+  map.resources :sites, :requirements => { :id => %r([^/;,]+) } do |sites|
+    sites.resources :keywords, :shallow => :true, :requirements => { :site_id => %r([^/;,]+) }
+    sites.resources :reports, :shallow => :true, :requirements => { :site_id => %r([^/;,]+) }
   end
-  map.resources :keywords, :except => [:index,:new]
-  map.resources :reports, :except => [:index,:new]
+  #map.resources :keywords, :except => [:index,:new]
+  #map.resources :reports, :except => [:index,:new]
 
   map.root :controller => "Sites"
   
