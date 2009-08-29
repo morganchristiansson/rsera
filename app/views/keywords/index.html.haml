@@ -1,0 +1,39 @@
+%h1
+  Listing keywords
+%table
+  %tr
+    %th
+      Keyword
+    %th
+      Langcode
+    %th
+      Is active
+    %th
+      Priority
+    %th
+      Rank
+  - @keywords.each do |keyword|
+    - rank = keyword.searchengine_logs.find(:first, :order => "created_at")
+    %tr
+      %td
+        = h keyword.keyword
+      %td
+        = h keyword.langcode
+      %td
+        = h keyword.is_active
+      %td
+        = h keyword.priority
+      %td
+        -if rank
+          = h rank.ranking
+          (
+          = h rank.created_at
+          )
+      %td
+        = link_to 'Show', site_keywords_path(keyword)
+      %td
+        -#= link_to 'Edit', edit_site_keyword_path(keyword)
+      %td
+        = link_to 'Destroy', keyword, :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New keyword', new_site_keyword_path(@site)

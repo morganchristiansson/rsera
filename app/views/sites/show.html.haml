@@ -1,0 +1,14 @@
+%p
+  %b
+    Host:
+  = h @site.host
+
+%h3 Keywords
+%ul
+  - for keyword in @site.keywords
+    %li=keyword
+=link_to 'Add keyword', new_site_keyword_path(@site)
+
+= link_to 'Edit', edit_site_path(@site)
+|
+= link_to 'Back', sites_path
