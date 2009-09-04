@@ -26,7 +26,7 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_keyword_path(@keyword) %> |
+<%= link_to 'Edit', edit_site_keyword_path(@site, @keyword) %> |
 <%= link_to 'Back', site_keywords_path(@site) %>
 
 <hr>
@@ -37,6 +37,6 @@
 <h2>History</h2>
 <ul>
 <% for log in @keyword.searchengine_logs.find(:all, :order => 'searchengine_id') %>
-  <li><%= link_to "#{log.ranking} #{log.searchengine} #{log.report.created_at}", log %></li>
+  <li><%= link_to "#{log.ranking} #{log.searchengine} #{log.report&&log.report.created_at}", log %></li>
 <% end %>
 </ul>

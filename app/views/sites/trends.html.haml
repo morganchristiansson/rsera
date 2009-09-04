@@ -1,0 +1,9 @@
+FIXME: priorities
+%h2
+  Searchengines
+%ul
+  - Searchengine.find(:all).each do |s|
+    %li= link_to s.title, trends_site_path(@site, :searchengine_id => s.id)
+%script{ :src => "/javascripts/swfobject.js", :type => "text/javascript" }
+= @graph
+

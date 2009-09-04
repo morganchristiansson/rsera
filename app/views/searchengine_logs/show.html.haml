@@ -1,0 +1,31 @@
+%p
+  %b
+    Report:
+  =h @searchengine_log.report_id
+%p
+  %b
+    Searchengine:
+  =h @searchengine_log.searchengine_id
+%p
+  %b
+    Keyword:
+  =h @searchengine_log.keyword_id
+%p
+  %b
+    Ranking:
+  =h @searchengine_log.ranking
+%p
+  %b
+    Indexed page:
+  =h @searchengine_log.indexed_page
+%p
+  %b
+    Contents:
+  - if @searchengine_log.contents.nil?
+    No archived result
+  - else
+    = link_to 'View archived search result', searchengine_logs_contents_path(@searchengine_log)
+= link_to 'Edit', edit_searchengine_log_path(@searchengine_log)
+|
+= link_to 'Back', searchengine_logs_path
+

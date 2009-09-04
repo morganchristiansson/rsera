@@ -2,8 +2,8 @@
 %html
   %head
     %title
-      Websites:
-      = controller.action_name
+      = controller.class.to_s << "#" << controller.action_name
+    = stylesheet_link_tag 'reset-fonts-grids'
     = stylesheet_link_tag 'default'
   %body
     #doc3.yui-t7

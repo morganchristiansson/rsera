@@ -3,7 +3,10 @@ class Keyword < ActiveRecord::Base
 	has_many :searchengine_logs
 
   validates_associated :site
+  def to_s
+    keyword
+  end
 	def to_param
-		"#{id}-#{keyword}"
+		"#{id}-#{keyword.parameterize}"
 	end
 end

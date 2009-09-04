@@ -1,0 +1,23 @@
+%h1
+  Listing reports
+%table
+  %tr
+    %th
+      Rankdate
+    %th
+      Reportrules
+  - @reports.each do |report|
+    %tr
+      %td
+        =h report.created_at
+      %td{ :style => "text-align: right;" }
+        = report.searchengine_logs.count
+      %td
+        = link_to 'Show', site_report_path(@site, report)
+      %td
+        = link_to 'Edit', edit_site_report_path(@site, report)
+      %td
+        = link_to 'Destroy', site_report_path(@site, report), :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New report', new_site_report_path(@site)
+

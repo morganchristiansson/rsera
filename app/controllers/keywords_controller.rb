@@ -83,7 +83,7 @@ class KeywordsController < ApplicationController
     #FIXME group by searchengine_id
     @site    = @keyword.site
     @google_analytics_link = "https://www.google.com/analytics/reporting/keyword_detail?id=3132790&lp=%2Fanalytics%2Freporting%2Fkeywords&d1="+CGI.escape(@keyword.keyword)
-    @graph = open_flash_chart_object(600,600, url_for(:id => params[:id], :action => "graph_code"))
+    @graph = open_flash_chart_object(600,600, graph_code_site_keyword_path(@site, @keyword))
 
     respond_to do |format|
       format.html # show.html.erb

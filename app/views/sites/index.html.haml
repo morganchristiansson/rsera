@@ -1,0 +1,17 @@
+%h1
+  Listing sites
+%table
+  %tr
+    %th
+      Url
+  - for site in @sites
+    %tr
+      %td= link_to h(site.host), site
+      %td= link_to 'Trends', trends_site_path(site)
+      %td= link_to 'Keywords', site_keywords_path(site)
+      %td= link_to 'Reports', site_reports_path(site)
+      %td= link_to 'Edit', edit_site_path(site)
+      %td= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New site', new_site_path
+

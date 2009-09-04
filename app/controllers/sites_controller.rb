@@ -80,7 +80,7 @@ class SitesController < ApplicationController
   
   def trends
     @site = Site.find_by_host(params[:id])
-    @graph = open_flash_chart_object(600,600, url_for(:id => params[:id], :searchengine_id => params[:searchengine_id], :action => "graph_code"))
+    @graph = params[:searchengine_id] && open_flash_chart_object(600,600, graph_code_site_url(@site, :searchengine_id => params[:searchengine_id]))
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @site }
@@ -136,6 +136,15 @@ class SitesController < ApplicationController
       chart.add_element(line)
     end
     render :text => chart.to_s
+  end
+
+  def analytics
+    @site = Site.find_by_host params[:id]
+    keywords = @site.analytics_keywords
+    keywords.each do |keyword|
+      @site.keywords.find_or_create_by_keyword keyword
+    end
+    flash[:notice] = "Found #{keywords.length} new and/or existing keywords from google analytics"
   end
 end
 

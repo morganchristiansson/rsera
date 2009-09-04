@@ -4,17 +4,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searchengine_logs
   map.searchengine_logs_contents 'searchengine_logs/contents/:id', :controller => "SearchengineLogs", :action => "contents"
 
-  map.resources :sites, :requirements => { :id => %r([^/;,]+) } do |sites|
-    sites.resources :keywords, :shallow => :true, :requirements => { :site_id => %r([^/;,]+) }
-    sites.resources :reports, :shallow => :true, :requirements => { :site_id => %r([^/;,]+) }
+  map.resources :sites, :member => {:trends => :get, :analytics => :get}, :requirements => { :id => %r([^/]+) } do |sites|
+    sites.with_options :requirements => { :site_id => %r([^/]+) } do |site_requirements|
+      site_requirements.resources :keywords, :member => {:graph_code => :get}
+      site_requirements.resources :reports
+    end
   end
-  #map.resources :keywords, :except => [:index,:new]
-  #map.resources :reports, :except => [:index,:new]
-
   map.root :controller => "Sites"
-  
-
-  map.site_trends 'sites/trends/:id', :controller => "Sites", :action => "trends", :requirements => { :id => %r([^/;,]+) }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -55,10 +51,11 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id', :requirements => { :id => %r([^/;,]+) }
-  map.connect ':controller/:action/:id.:format', :requirements => { :id => %r([^/;,]+) }
+  #map.connect ':controller/:action/:id', :requirements => { :id => %r([^/;,]+) }
+  #map.connect ':controller/:action/:id.:format', :requirements => { :id => %r([^/;,]+) }
   
   map.resources :sessions
   map.login 'login', :controller => "Sessions", :action => 'new'
   map.logout 'logout', :controller => "Sessions", :action => 'destroy'
 end
+

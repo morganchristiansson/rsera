@@ -1,0 +1,15 @@
+%p
+  %b
+    Created:
+  =h @report.created_at
+  
+%table
+  - for log in @report.searchengine_logs.find(:all, :joins => :keyword, :include => [:keyword,:searchengine], :order => 'keywords.keyword')
+    %tr
+      %td=log.searchengine
+      %td=link_to log.keyword, site_keyword_path(@site, log.keyword)
+      %td=log.ranking
+= link_to 'Edit', edit_site_report_path(@site, @report)
+|
+= link_to 'Back', site_reports_path(@site)
+

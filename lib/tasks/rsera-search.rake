@@ -49,7 +49,7 @@ end
 namespace :rsera do
   desc "Refresh SERP data"
   task:refresh do
-    for site in Site.find :all
+    (ENV['SITE_ID'] ? Site.find(ENV['SITE_ID']) : (ENV['SITE'] ? Site.find_all_by_host(ENV['SITE']) : Site.find(:all))).each do |site|
       @report = Report.create :site_id => site.id
       puts "Created report #{@report.inspect}"
       if ENV.include?('SE')
