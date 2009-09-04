@@ -30,7 +30,7 @@
           = h rank.created_at
           )
       %td
-        = link_to 'Show', site_keywords_path(keyword)
+        = link_to 'Show', site_keyword_path(@site, keyword)
       %td
         -#= link_to 'Edit', edit_site_keyword_path(keyword)
       %td
