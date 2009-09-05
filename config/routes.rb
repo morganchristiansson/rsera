@@ -4,9 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searchengine_logs
   map.searchengine_logs_contents 'searchengine_logs/contents/:id', :controller => "SearchengineLogs", :action => "contents"
 
-  map.resources :sites, :member => {:trends => :get, :analytics => :get}, :requirements => { :id => %r([^/]+) } do |sites|
+  map.resources :sites, :member => {:trends => :get, :analytics => :get, :graph_code => :get}, :requirements => { :id => %r([^/]+) } do |sites|
     sites.with_options :requirements => { :site_id => %r([^/]+) } do |site_requirements|
-      site_requirements.resources :keywords, :member => {:graph_code => :get}
+      site_requirements.resources :keywords
       site_requirements.resources :reports
     end
   end

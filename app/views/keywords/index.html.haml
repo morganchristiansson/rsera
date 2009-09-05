@@ -32,8 +32,8 @@
       %td
         = link_to 'Show', site_keyword_path(@site, keyword)
       %td
-        -#= link_to 'Edit', edit_site_keyword_path(keyword)
+        = link_to 'Edit', edit_site_keyword_path(@site, keyword)
       %td
-        -#= link_to 'Destroy', keyword, :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Destroy', site_keyword_path(@site, keyword), :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New keyword', new_site_keyword_path(@site)

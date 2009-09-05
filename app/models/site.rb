@@ -10,18 +10,19 @@ class Site < ActiveRecord::Base
     #render :text => "Set your account to one of: "+ga.accounts.map {|a| "#{a.title} - #{a.profile_id}"}.join("\n\n")
     raise unless self.analytics_profile_id
     
-    results = gattica.get({:start_date => '2009-08-01',
-                      :end_date => '2009-09-01',
-                      :dimensions => 'keyword',
-                      :metrics => "visits", #['visits','transactions','transactionRevenue'],
-                      :sort => "-#{self.analytics_metric}",
-                      :filters => [self.analytics_filter, "keyword!=(not set)"].compact.join(';') #'ga:transactions>0'
-                      })
+    results = gattica.get({:start_date => 1.month.ago.to_date.to_s,
+                           :end_date => Date.today.to_s,
+                           :dimensions => 'keyword',
+                           :metrics => "visits", #['visits','transactions','transactionRevenue'],
+                           :sort => "-#{self.analytics_metric}",
+                           :filters => [self.analytics_filter, "keyword!=(not set)"].compact.join(';') #'ga:transactions>0'
+                           })
     @keywords = results.to_h["points"].map{|p|p.title[/^ga:keyword=(.*)$/,1]}
   end
   def to_param
     host
   end
+
 private
   def gattica
     @ga ||= if not self.analytics_token

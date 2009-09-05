@@ -25,6 +25,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1/edit
   def edit
+    @site = Site.find_by_host(params[:site_id])
     @keyword = Keyword.find(params[:id])
   end
 
@@ -37,7 +38,7 @@ class KeywordsController < ApplicationController
     respond_to do |format|
       if @keyword.save
         flash[:notice] = 'Keyword was successfully created.'
-        format.html { redirect_to(site_keywords_path(@site, @keyword)) }
+        format.html { redirect_to(site_keyword_path(@site, @keyword)) }
         format.xml  { render :xml => @keyword, :status => :created, :location => @keyword }
       else
         format.html { render :action => "new" }
@@ -49,12 +50,13 @@ class KeywordsController < ApplicationController
   # PUT /keywords/1
   # PUT /keywords/1.xml
   def update
+    @site = Site.find_by_host(params[:site_id])
     @keyword = Keyword.find(params[:id])
 
     respond_to do |format|
       if @keyword.update_attributes(params[:keyword])
         flash[:notice] = 'Keyword was successfully updated.'
-        format.html { redirect_to(@keyword) }
+        format.html { redirect_to(site_keyword_path(@site, @keyword)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -83,7 +85,7 @@ class KeywordsController < ApplicationController
     #FIXME group by searchengine_id
     @site    = @keyword.site
     @google_analytics_link = "https://www.google.com/analytics/reporting/keyword_detail?id=3132790&lp=%2Fanalytics%2Freporting%2Fkeywords&d1="+CGI.escape(@keyword.keyword)
-    @graph = open_flash_chart_object(600,600, graph_code_site_keyword_path(@site, @keyword))
+    #@graph = open_flash_chart_object(600,600, graph_code_site_keyword_path(@site, @keyword))
 
     respond_to do |format|
       format.html # show.html.erb

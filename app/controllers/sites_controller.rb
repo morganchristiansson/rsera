@@ -96,7 +96,7 @@ class SitesController < ApplicationController
     chart.set_title(title)
 
     params[:priority] ||= 1
-    conditions = ["searchengine_logs.searchengine_id = ? AND keywords.priority = ? AND reports.site_id = ? AND ranking IS NOT NULL", params[:searchengine_id], params[:priority], @site.id]
+    conditions = ["searchengine_logs.searchengine_id = ? AND reports.site_id = ? AND ranking IS NOT NULL", params[:searchengine_id], @site.id]
     dates = {}
     keyword_ids = {}
     rrs = SearchengineLog.find(:all, :conditions => conditions, :joins => [:report, :keyword], :order => "searchengine_logs.created_at")
